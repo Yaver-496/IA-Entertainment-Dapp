@@ -6,7 +6,7 @@ import {CheckProofRequestDto} from "../dto/check-proof-request-dto";
 import {tryParsePublicKey} from "../wrappers/wallets-data";
 
 const tonProofPrefix = 'ton-proof-item-v2/';
-const tonConnectPrefix = 'yaver-496';
+const tonConnectPrefix = 'ton-connect';
 const allowedDomains = [
   'yaver-496.github.io',
   'localhost:5173'
@@ -28,19 +28,31 @@ export class TonProofService {
    */
   public async checkProof(payload: CheckProofRequestDto, getWalletPublicKey: (address: string) => Promise<Buffer | null>): Promise<boolean> {
     try {
+
+      console.log('payload state init loading...');
+
       const stateInit = loadStateInit(Cell.fromBase64(payload.proof.state_init).beginParse());
+
+      console.log('payload state init:', stateInit);
+
 
       // 1. First, try to obtain public key via get_public_key get-method on smart contract deployed at Address.
       // 2. If the smart contract is not deployed yet, or the get-method is missing, you need:
       //  2.1. Parse TonAddressItemReply.walletStateInit and get public key from stateInit. You can compare the walletStateInit.code
       //  with the code of standard wallets contracts and parse the data according to the found wallet version.
       let publicKey = tryParsePublicKey(stateInit) ?? await getWalletPublicKey(payload.address);
+
+      console.log('publicKey:', publicKey);
+
       if (!publicKey) {
         return false;
       }
 
       // 2.2. Check that TonAddressItemReply.publicKey equals to obtained public key
       const wantedPublicKey = Buffer.from(payload.public_key, 'hex');
+
+      console.log('wantedPublicKey:', wantedPublicKey);
+
       if (!publicKey.equals(wantedPublicKey)) {
         return false;
       }
@@ -108,6 +120,8 @@ export class TonProofService {
       ]);
 
       const result = Buffer.from(await sha256(fullMsg));
+
+      console.log('result:', result);
 
       return sign.detached.verify(result, message.signature, publicKey);
     } catch (e) {
