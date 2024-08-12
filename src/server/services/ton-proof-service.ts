@@ -6,7 +6,7 @@ import {CheckProofRequestDto} from "../dto/check-proof-request-dto";
 import {tryParsePublicKey} from "../wrappers/wallets-data";
 
 const tonProofPrefix = 'ton-proof-item-v2/';
-const tonConnectPrefix = 'Yaver-496';
+const tonConnectPrefix = 'ton-connect';
 const allowedDomains = [
   'Yaver-496.github.io',
   'localhost:5173'

@@ -20,12 +20,16 @@ export const checkProof: HttpResponseResolver = async ({request}) => {
     const client = TonApiService.create(body.network);
     const service = new TonProofService();
 
+    console.log('body.network', body.network);
+
     const isValid = await service.checkProof(body, (address) => client.getWalletPublicKey(address));
     if (!isValid) {
       return badRequest({error: 'Invalid proof'});
     }
 
     const payloadToken = body.proof.payload;
+    console.log('payloadToken', payloadToken);
+
     if (!await verifyToken(payloadToken)) {
       return badRequest({error: 'Invalid token'});
     }
