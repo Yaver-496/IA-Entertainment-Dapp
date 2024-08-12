@@ -15,6 +15,7 @@
     "@ton/crypto": "^3.2.0",
     "@ton/ton": "^13.11.1",
     "@tonconnect/ui-react": "2.0.9-beta.0",
+    "@twa-dev/sdk": "^7.8.0",
     "boxen": "^5.1.2",
     "buffer": "^6.0.3",
     "eruda": "^2.11.2",
