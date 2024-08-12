@@ -49,9 +49,12 @@ async function enableMocking() {
   });
 }
 
-enableMocking().then(() => render(
-  <StrictMode>
-    <App/>
-  </StrictMode>,
-  document.getElementById('root') as HTMLElement
-));
+(async function run() {
+  await enableMocking();
+})();
+// enableMocking().then(() => render(
+//   <StrictMode>
+//     <App/>
+//   </StrictMode>,
+//   document.getElementById('root') as HTMLElement
+// ));
