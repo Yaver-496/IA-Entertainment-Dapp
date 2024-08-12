@@ -12,7 +12,10 @@ import {createAuthToken, verifyToken} from "../utils/jwt";
  */
 export const checkProof: HttpResponseResolver = async ({request}) => {
   try {
-    const body = CheckProofRequest.parse(await request.json());
+    const requestJson = await request.json();
+    const body = CheckProofRequest.parse(requestJson);
+    console.log('requestJson', requestJson);
+    console.log('body', body);
 
     const client = TonApiService.create(body.network);
     const service = new TonProofService();
