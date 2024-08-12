@@ -12,7 +12,7 @@ export default defineConfig({
   base: process.env.GH_PAGES ? '/IA-Entertainment-Dapp/' : './',
   server: {
     fs: {
-      allow: ['../sdk', './'],
+      allow: ['../sdk', './'], 
     },
   },
 })
