@@ -1,5 +1,5 @@
 import { eventSystem } from '../EventSystem';
-import * as tgwebManager from '../tgwebmanager.ts'
+import * as tgwebManager from '../../tgwebmanager.ts'
 
 export function referralFound(id) {
     console.log("Referral ID:", id);

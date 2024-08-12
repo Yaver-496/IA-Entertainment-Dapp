@@ -1,6 +1,6 @@
 import { eventSystem } from '../EventSystem';
 import * as payment from './payment.js';
-import * as tgWebManager from '../tgwebmanager.ts'
+import * as tgWebManager from '../../tgwebmanager.ts'
 import * as tonConnectionHandler from '../ton-connection/tonconnectUIHandler.ts'
 
 eventSystem.on('paywithstar', async function(v){

@@ -1,7 +1,7 @@
 import WebApp from '@twa-dev/sdk'
-import * as Database from './manager/database.js';
-import { eventSystem } from './EventSystem';
-import * as referralManager from './manager/telegramReferralManager.js';
+import * as Database from './src/manager/database.js';
+import { eventSystem } from './src/EventSystem.js';
+import * as referralManager from './src/manager/telegramReferralManager.js';
 
 eventSystem.on('init', async function (v) {
     await start();
