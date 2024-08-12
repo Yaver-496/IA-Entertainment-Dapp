@@ -6,9 +6,9 @@ import {CheckProofRequestDto} from "../dto/check-proof-request-dto";
 import {tryParsePublicKey} from "../wrappers/wallets-data";
 
 const tonProofPrefix = 'ton-proof-item-v2/';
-const tonConnectPrefix = 'ton-connect';
+const tonConnectPrefix = 'yaver-496';
 const allowedDomains = [
-  'Yaver-496.github.io',
+  'yaver-496.github.io',
   'localhost:5173'
 ];
 const validAuthTime = 15 * 60; // 15 minute
