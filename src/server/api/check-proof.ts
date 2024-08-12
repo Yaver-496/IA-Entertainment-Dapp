@@ -14,8 +14,6 @@ export const checkProof: HttpResponseResolver = async ({request}) => {
   try {
     const requestJson = await request.json();
     const body = CheckProofRequest.parse(requestJson);
-    console.log('requestJson', requestJson);
-    console.log('body', body);
 
     const client = TonApiService.create(body.network);
     const service = new TonProofService();
@@ -23,16 +21,21 @@ export const checkProof: HttpResponseResolver = async ({request}) => {
     console.log('body.network', body.network);
 
     const isValid = await service.checkProof(body, (address) => client.getWalletPublicKey(address));
+
+    console.log('isValid', isValid);
+
     if (!isValid) {
       return badRequest({error: 'Invalid proof'});
     }
 
     const payloadToken = body.proof.payload;
-    console.log('payloadToken', payloadToken);
+    console.log('TOKEN WAITING FOR VERIFY', payloadToken);
 
     if (!await verifyToken(payloadToken)) {
       return badRequest({error: 'Invalid token'});
     }
+
+    console.log('Token VERIFIED', payloadToken);
 
     const token = await createAuthToken({address: body.address, network: body.network});
 
