@@ -1,5 +1,10 @@
 import './App.scss'
 import {THEME, TonConnectUIProvider} from "@tonconnect/ui-react";
+import {Header} from "./components/Header/Header";
+import {TxForm} from "./components/TxForm/TxForm";
+import {Footer} from "./components/Footer/Footer";
+import {TonProofDemo} from "./components/TonProofDemo/TonProofDemo";
+import {CreateJettonDemo} from "./components/CreateJettonDemo/CreateJettonDemo";
 
 function App() {
   return (
@@ -54,8 +59,13 @@ function App() {
               twaReturnUrl: 'https://t.me/KeepyUp_bot/gaming'
           }}
       >
-        <div className="app"/>
-
+        <div className="app">
+            <Header />
+            <TxForm />
+            <CreateJettonDemo />
+            <TonProofDemo />
+            <Footer />
+        </div>
       </TonConnectUIProvider>
   )
 }
